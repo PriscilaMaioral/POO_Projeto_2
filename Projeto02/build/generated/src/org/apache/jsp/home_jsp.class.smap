@@ -1,0 +1,14 @@
+SMAP
+home_jsp.java
+JSP
+*S JSP
+*F
++ 0 home.jsp
+home.jsp
++ 1 header.jspf
+WEB-INF/header.jspf
+*L
+1,8:49
+1#1,13:57
+8#0,14:70
+*E
