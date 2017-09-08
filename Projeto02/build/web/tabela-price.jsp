@@ -86,6 +86,6 @@
                 <%}%>
             </table><%}%>
         </div>
-        <%@include file="WEB-INF/footer.jspf"%>
+      
     </body>
 </html>

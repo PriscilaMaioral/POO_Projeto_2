@@ -1,6 +1,6 @@
 <%-- any content can be specified here e.g.: --%>
 <%@ page pageEncoding="UTF-8" %>
-<link rel="stylesheet" type="text/css" href="css/main.css">
+
     <nav>
         <h1>POO PROJETO02</h1>
         <ul>
