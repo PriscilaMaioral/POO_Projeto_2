@@ -1,0 +1,28 @@
+SMAP
+amortizacao_002damericana_jsp.java
+JSP
+*S JSP
+*F
++ 0 amortizacao-americana.jsp
+amortizacao-americana.jsp
++ 1 header.jspf
+WEB-INF/header.jspf
++ 2 footer.jspf
+WEB-INF/footer.jspf
+*L
+5,12:50
+1#1,13:62
+16#0,5:75
+22,18:82
+39,17:100
+56:117,3
+57,8:120
+64,11:128
+74,2:139
+76,5:141,3
+81:156
+82,2:157,3
+84,2:163
+1#2,4:165
+85#0,3:168
+*E

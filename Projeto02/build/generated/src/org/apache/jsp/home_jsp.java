@@ -12,8 +12,9 @@ public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
   private static java.util.List<String> _jspx_dependants;
 
   static {
-    _jspx_dependants = new java.util.ArrayList<String>(1);
+    _jspx_dependants = new java.util.ArrayList<String>(2);
     _jspx_dependants.add("/WEB-INF/header.jspf");
+    _jspx_dependants.add("/WEB-INF/footer.jspf");
   }
 
   private org.glassfish.jsp.api.ResourceInjector _jspx_resourceInjector;
@@ -35,7 +36,7 @@ public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
     PageContext _jspx_page_context = null;
 
     try {
-      response.setContentType("text/html");
+      response.setContentType("text/html;charset=UTF-8");
       pageContext = _jspxFactory.getPageContext(this, request, response,
       			null, true, 8192, true);
       _jspx_page_context = pageContext;
@@ -46,9 +47,13 @@ public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
-      out.write("      <head>\n");
+      out.write("    <head>\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
       out.write("        <title>HOME</title>\n");
       out.write("    </head>\n");
@@ -56,7 +61,7 @@ public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        ");
       out.write("\n");
       out.write("\n");
-      out.write("\n");
+      out.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"css/main.css\">\n");
       out.write("    <nav>\n");
       out.write("        <h1>POO PROJETO02</h1>\n");
       out.write("        <ul>\n");
@@ -79,7 +84,14 @@ public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                \n");
       out.write("             \n");
       out.write("            </ul>\n");
-      out.write("    \n");
+      out.write("\t</div>\n");
+      out.write("        \n");
+      out.write("        ");
+      out.write("\n");
+      out.write("\n");
+      out.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"css/main.css\">\n");
+      out.write("\n");
+      out.write("    </body>\n");
       out.write("</html>");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
