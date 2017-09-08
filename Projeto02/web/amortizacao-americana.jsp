@@ -56,10 +56,10 @@
             <%if(capital > 0 && meses>0 && juros>0){%>
             <table border="1" class="tabela">
                     <th>Parcelas</th>
+                    <th>Saldo Devedor</th>
                     <th>Amortização</th>
                     <th>Valor dos Juros</th>
                     <th>Valor da Prestação</th>
-                    <th>Saldo Devedor</th>
                     
                 <%for(int i = 1; i <= meses; i++){
                     
@@ -74,10 +74,10 @@
                 %>                
                 <tr>
                     <td><%=i%></td>
+                    <td><%=String.format("R$ %.2f", capital)%></td>
                     <td><%=String.format("R$ %.2f", cap)%></td>
                     <td><%=String.format("R$ %.2f", juros)%></td>
                     <td><%=String.format("R$ %.2f", parcela)%></td>
-                    <td><%=String.format("R$ %.2f", capital)%></td>
                 </tr>
                 <%}%>
             </table><%}%>

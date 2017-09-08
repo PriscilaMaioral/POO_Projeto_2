@@ -119,10 +119,10 @@ if(capital > 0 && meses>0 && juros>0){
       out.write("\n");
       out.write("            <table border=\"1\" class=\"tabela\">\n");
       out.write("                    <th>Parcelas</th>\n");
+      out.write("                    <th>Saldo Devedor</th>\n");
       out.write("                    <th>Amortização</th>\n");
       out.write("                    <th>Valor dos Juros</th>\n");
       out.write("                    <th>Valor da Prestação</th>\n");
-      out.write("                    <th>Saldo Devedor</th>\n");
       out.write("                    \n");
       out.write("                ");
 for(int i = 1; i <= meses; i++){
@@ -142,6 +142,9 @@ for(int i = 1; i <= meses; i++){
       out.print(i);
       out.write("</td>\n");
       out.write("                    <td>");
+      out.print(String.format("R$ %.2f", capital));
+      out.write("</td>\n");
+      out.write("                    <td>");
       out.print(String.format("R$ %.2f", cap));
       out.write("</td>\n");
       out.write("                    <td>");
@@ -149,9 +152,6 @@ for(int i = 1; i <= meses; i++){
       out.write("</td>\n");
       out.write("                    <td>");
       out.print(String.format("R$ %.2f", parcela));
-      out.write("</td>\n");
-      out.write("                    <td>");
-      out.print(String.format("R$ %.2f", capital));
       out.write("</td>\n");
       out.write("                </tr>\n");
       out.write("                ");
@@ -164,7 +164,7 @@ for(int i = 1; i <= meses; i++){
       out.write("        ");
       out.write("\n");
       out.write("\n");
-      out.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"css/main.css\">\n");
+      out.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"css/main.css\">");
       out.write("\n");
       out.write("    </body>\n");
       out.write("</html>");
