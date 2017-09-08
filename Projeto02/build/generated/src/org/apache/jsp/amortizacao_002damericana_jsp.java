@@ -12,9 +12,8 @@ public final class amortizacao_002damericana_jsp extends org.apache.jasper.runti
   private static java.util.List<String> _jspx_dependants;
 
   static {
-    _jspx_dependants = new java.util.ArrayList<String>(2);
+    _jspx_dependants = new java.util.ArrayList<String>(1);
     _jspx_dependants.add("/WEB-INF/header.jspf");
-    _jspx_dependants.add("/WEB-INF/footer.jspf");
   }
 
   private org.glassfish.jsp.api.ResourceInjector _jspx_resourceInjector;
@@ -61,7 +60,7 @@ public final class amortizacao_002damericana_jsp extends org.apache.jasper.runti
       out.write("        ");
       out.write("\n");
       out.write("\n");
-      out.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"css/main.css\">\n");
+      out.write("\n");
       out.write("    <nav>\n");
       out.write("        <h1>POO PROJETO02</h1>\n");
       out.write("        <ul>\n");
@@ -161,11 +160,7 @@ for(int i = 1; i <= meses; i++){
 }
       out.write("\n");
       out.write("        </div>\n");
-      out.write("        ");
-      out.write("\n");
-      out.write("\n");
-      out.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"css/main.css\">");
-      out.write("\n");
+      out.write("       \n");
       out.write("    </body>\n");
       out.write("</html>");
     } catch (Throwable t) {
