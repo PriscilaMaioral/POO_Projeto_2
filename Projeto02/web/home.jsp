@@ -1,9 +1,3 @@
-<%-- 
-    Document   : home
-    Created on : 06/09/2017, 16:24:18
-    Author     : BRYAN
---%>
-
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
