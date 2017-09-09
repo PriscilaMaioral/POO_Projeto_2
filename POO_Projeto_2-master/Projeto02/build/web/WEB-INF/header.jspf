@@ -1,0 +1,13 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+
+    <nav>
+        <h1>POO PROJETO02</h1>
+        <ul>
+            <li><a href="home.jsp" class="btn">Home</a></li>
+            <li><a href="amortizacao-constante.jsp" class="btn">Amortização Constante</a></li>
+            <li><a href="amortizacao-americana.jsp" class="btn">Amortização Americana</a></li>
+            <li><a href="tabela-price.jsp" class="btn">Tabela Price</a></li>			
+	</ul>
+    </nav>
+<hr/>
