@@ -4,7 +4,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 
-public final class amortizacao_002damericana_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class tabela_002dprice_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -49,12 +49,11 @@ public final class amortizacao_002damericana_jsp extends org.apache.jasper.runti
       out.write("\n");
       out.write("\n");
       out.write("\n");
-      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
-      out.write("        <title>Amortização Americana</title>\n");
+      out.write("        <title>Tabela Price</title>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
       out.write("        ");
@@ -72,67 +71,72 @@ public final class amortizacao_002damericana_jsp extends org.apache.jasper.runti
       out.write("    </nav>\n");
       out.write("<hr/>");
       out.write("\n");
-      out.write("        <div class=\"formatação\">\n");
-      out.write("            <h2>Amortização Americana</h2>\n");
-      out.write("            \n");
+      out.write("        <div id=\"formatação\">\n");
+      out.write("            <h2>(Tabela Price)</h2>\n");
       out.write("            ");
 
-                //INICIALIZAÇÃO DAS VARIÁVEIS NO TAMANHO 0
-            float parcela = 0;
-            float capital = 0;
-            float juros = 0;
+            double capital = 0;
+            double taxa = 0;
+            double devedor = 0;
+            double amortizacao = 0;
+            double prestacao = 0;
             int meses = 0;
             
-            //TRATAMENTO DE EXCESSÕES COM TRY CATCH
-            try{ if(request.getParameter("enviar") != null){
-            capital = Float.parseFloat(request.getParameter("C"));
-            juros = Float.parseFloat(request.getParameter("j"));
+            try{ if (request.getParameter("enviar")!= null) {
+            capital = Double.parseDouble(request.getParameter("C"));
+            taxa = Double.parseDouble(request.getParameter("j"));
             meses = Integer.parseInt(request.getParameter("m"));}
             }
-            catch(Exception e){out.println("entre com um dado válido");}
-            
-            //OPERAÇÃO AMORTIZAÇÃO AMERICANA
-            juros = capital * (juros/100);
-            parcela = juros;
-            float cap = capital; 
+            catch(Exception e){out.println("entre com um valor válido");}
+
+            taxa = taxa/100;
+            double linha1 = capital * taxa;
+            double x = Math.pow((1+taxa),meses);
+            double linha2 = 1-(1/x);
+                                    
             
       out.write("\n");
-      out.write("            \n");
       out.write("            <form> \n");
       out.write("                <label for=\"C\"><b>Capital</b></label><br>\n");
-      out.write("                <input type=\"number\" name=\"C\" id=\"C\">\n");
+      out.write("                <input type=\"number\" step=\"0.01\" name=\"C\" id=\"C\">\n");
       out.write("                <br>\n");
       out.write("                <label for=\"m\"><b>Meses</b></label><br>\n");
-      out.write("                <input type=\"number\" name=\"m\" id=\"m\">\n");
+      out.write("                <input type=\"number\" step=\"0.01\" name=\"m\" id=\"m\">\n");
       out.write("                <br>\n");
       out.write("                <label for=\"j\"><b>Juros</b></label><br>\n");
-      out.write("                <input type=\"number\" name=\"j\" id=\"j\">\n");
+      out.write("                <input type=\"number\" step=\"0.01\" name=\"j\" id=\"j\">\n");
       out.write("                \n");
       out.write("                <br><br>\n");
-      out.write("                <input class=\"btn\" type=\"submit\" name=\"enviar\" value=\"Gerar Amortização\">\n");
-      out.write("                <br><br>\n");
+      out.write("                <input type=\"submit\" name=\"enviar\" value=\"Gerar Amortização\" class=\"btn\">\n");
+      out.write("                <br/><br/>\n");
       out.write("            </form>\n");
       out.write("            <hr>\n");
       out.write("            ");
-if(capital > 0 && meses>0 && juros>0){
+if(capital > 0 && meses>0 && taxa>0){
       out.write("\n");
       out.write("            <table border=\"1\" class=\"tabela\">\n");
-      out.write("                    <th>Parcelas</th>\n");
+      out.write("                <th>Parcelas</th>\n");
       out.write("                    <th>Saldo Devedor</th>\n");
-      out.write("                    <th>Amortização</th>\n");
-      out.write("                    <th>Valor dos Juros</th>\n");
       out.write("                    <th>Valor da Prestação</th>\n");
+      out.write("                    <th>Valor dos Juros</th>\n");
+      out.write("                    <th>Amortização</th>\n");
       out.write("                    \n");
       out.write("                ");
 for(int i = 1; i <= meses; i++){
                     
-                    if(i == meses){
-                        parcela = capital + juros;
-                        cap = capital;
-                        capital = 0;
+                    double juros = 0;
+                    
+                    if(i == 1){
+                        devedor = capital;
+                        prestacao = 0;
+                        juros = 0;
+                        amortizacao = 0;
                     }
-                    if( i != meses){
-                        cap = 0;
+                    else{
+                        prestacao = linha1/linha2;
+                        juros = devedor * taxa;
+                        devedor = (devedor+juros)- prestacao;
+                        amortizacao = prestacao - juros;
                     }                   
                 
       out.write("                \n");
@@ -141,16 +145,16 @@ for(int i = 1; i <= meses; i++){
       out.print(i);
       out.write("</td>\n");
       out.write("                    <td>");
-      out.print(String.format("R$ %.2f", capital));
+      out.print(String.format("R$ %.2f", devedor));
       out.write("</td>\n");
       out.write("                    <td>");
-      out.print(String.format("R$ %.2f", cap));
+      out.print(String.format("R$ %.2f", prestacao));
       out.write("</td>\n");
       out.write("                    <td>");
       out.print(String.format("R$ %.2f", juros));
       out.write("</td>\n");
       out.write("                    <td>");
-      out.print(String.format("R$ %.2f", parcela));
+      out.print(String.format("R$ %.2f", amortizacao));
       out.write("</td>\n");
       out.write("                </tr>\n");
       out.write("                ");
@@ -160,7 +164,7 @@ for(int i = 1; i <= meses; i++){
 }
       out.write("\n");
       out.write("        </div>\n");
-      out.write("       \n");
+      out.write("      \n");
       out.write("    </body>\n");
       out.write("</html>");
     } catch (Throwable t) {

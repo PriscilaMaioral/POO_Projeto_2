@@ -20,27 +20,16 @@
      <%
             //Declaração da variavel i com valor 0 para evitar sujeira de memória
             int i = 0;
-            
-            //Declaração da variável ca utilizada para pegar o valor do form
             float ca = 0; 
-            try{ca = Float.parseFloat(request.getParameter("ca"));}
-            catch(Exception e){
-                out.println("<div>entre com um dado válido</div>");
+            int mes = 0; 
+            float jur = 0;
+            //Declaração da variável ca utilizada para pegar o valor do form
+            try{ if (request.getParameter ("enviar") != null){
+            ca = Float.parseFloat(request.getParameter("ca"));
+            mes = Integer.parseInt(request.getParameter("mes"));
+            jur = Float.parseFloat(request.getParameter("jur"));}
             }
-            
-            //Criação da variável mes utilizada para pegar o valor do form
-             int mes = 0; 
-             try{mes = Integer.parseInt(request.getParameter("mes"));}
-            catch(Exception e){
-            out.println("<div>entre com um dado válido</div>");
-            }
-             
-             //Criação da variável jur utilizada para pegar o valor do form
-              float jur = 0;
-              try{jur = Float.parseFloat(request.getParameter("jur"));}
-            catch(Exception e){
-            out.println("<div>entre com um dado válido</div>");
-            }
+            catch(Exception e){out.println("entre com um valor válido");}
                 
                
               float amorti = ca / mes;
@@ -52,43 +41,41 @@
      %>
         <form>
             <b>Capital</b><br/>    
-            <input type="number" name="ca" />
+            <input type="number" step="0.01" name="ca" />
           
             <br/> <b>Meses</b><br/>        
             <input type="number" name="mes" />
             
             <br/> <b>Juros</b><br/>
-            <input type="number" name="jur" /><br/><br/>            
-            <input class="btn" type="submit" value="Gerar Amortização"/>
+            <input type="number" step="0.01" name="jur" /><br/><br/>            
+            <input class="btn" type="submit" name="enviar" value="Gerar Amortização"/>
         </form>
             <br/>
             <hr>
           <%if(ca > 0 && mes>0 && jur>0){%>
         <table border="2" class="tabela1">
-            <th> Periodo </th>
-            <th> Saldo Devedor </th>
-             <th>Amortização </th>
+            <th> Parcelas </th>
             <th> Juros </th>
-            <th> Prestação </th>
+            <th> Total da parcela </th>
+            <th> Valor amortizado </th>
+            <th>Amortização </th>
             <%for(i=1; i<=mes; i++){%>
             
             <tr>
                 <td><%=i%></td>
- 
-                <td>R$ <%=String.format("%.2f", ca = ca-amorti)%></td>
-                
-                <td>R$ <%=String.format("%.2f", amorti)%></td>
                 
                 <td>R$ <%= String.format("%.2f", juros = ca * jur / 100) %></td>
                 
                 <td>R$ <%=String.format("%.2f", par+juros)%></td>
                 
+                <td>R$ <%=String.format("%.2f", ca = ca-amorti)%></td>
+                
+                <td>R$ <%=String.format("%.2f", amorti)%></td>
               
             </tr>
             <%}%>
         </table><%}%>
         </div>
-        
        
     </body>
 </html>
