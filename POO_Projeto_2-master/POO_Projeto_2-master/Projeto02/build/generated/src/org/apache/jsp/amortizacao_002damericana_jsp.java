@@ -84,12 +84,18 @@ public final class amortizacao_002damericana_jsp extends org.apache.jasper.runti
             int meses = 0;
             
             //TRATAMENTO DE EXCESSÕES COM TRY CATCH
-            try{ if(request.getParameter("enviar") != null){
-            capital = Float.parseFloat(request.getParameter("C"));
-            juros = Float.parseFloat(request.getParameter("j"));
-            meses = Integer.parseInt(request.getParameter("m"));}
+            try{capital = Float.parseFloat(request.getParameter("C"));}
+            catch(Exception e){
+            out.println("<div>entre com um dado válido</div>");
             }
-            catch(Exception e){out.println("entre com um dado válido");}
+            try{juros = Float.parseFloat(request.getParameter("j"));}
+            catch(Exception e){
+            out.println("<div>entre com um dado válido</div>");
+            }
+            try{meses = Integer.parseInt(request.getParameter("m"));}
+            catch(Exception e){
+            out.println("<div>entre com um dado válido</div>");
+            }
             
             //OPERAÇÃO AMORTIZAÇÃO AMERICANA
             juros = capital * (juros/100);
@@ -100,16 +106,16 @@ public final class amortizacao_002damericana_jsp extends org.apache.jasper.runti
       out.write("            \n");
       out.write("            <form> \n");
       out.write("                <label for=\"C\"><b>Capital</b></label><br>\n");
-      out.write("                <input type=\"number\" name=\"C\" id=\"C\">\n");
+      out.write("                <input type=\"text\" name=\"C\" id=\"C\">\n");
       out.write("                <br>\n");
       out.write("                <label for=\"m\"><b>Meses</b></label><br>\n");
-      out.write("                <input type=\"number\" name=\"m\" id=\"m\">\n");
+      out.write("                <input type=\"text\" name=\"m\" id=\"m\">\n");
       out.write("                <br>\n");
       out.write("                <label for=\"j\"><b>Juros</b></label><br>\n");
-      out.write("                <input type=\"number\" name=\"j\" id=\"j\">\n");
+      out.write("                <input type=\"text\" name=\"j\" id=\"j\">\n");
       out.write("                \n");
       out.write("                <br><br>\n");
-      out.write("                <input class=\"btn\" type=\"submit\" name=\"enviar\" value=\"Gerar Amortização\">\n");
+      out.write("                <input class=\"btn\" type=\"submit\" value=\"Gerar Amortização\">\n");
       out.write("                <br><br>\n");
       out.write("            </form>\n");
       out.write("            <hr>\n");

@@ -12,8 +12,9 @@ public final class amortizacao_002dconstante_jsp extends org.apache.jasper.runti
   private static java.util.List<String> _jspx_dependants;
 
   static {
-    _jspx_dependants = new java.util.ArrayList<String>(1);
+    _jspx_dependants = new java.util.ArrayList<String>(2);
     _jspx_dependants.add("/WEB-INF/header.jspf");
+    _jspx_dependants.add("/WEB-INF/footer.jspf");
   }
 
   private org.glassfish.jsp.api.ResourceInjector _jspx_resourceInjector;
@@ -54,14 +55,14 @@ public final class amortizacao_002dconstante_jsp extends org.apache.jasper.runti
       out.write("<html>\n");
       out.write("    <head>\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
-      out.write("        \n");
+      out.write("        <link rel=\"stylesheet\" type=\"text/css\" href=\"css/main.css\">\n");
       out.write("        <title>Amortização Constante</title>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
       out.write("        ");
       out.write("\n");
       out.write("\n");
-      out.write("\n");
+      out.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"css/main.css\">\n");
       out.write("    <nav>\n");
       out.write("        <h1>POO PROJETO02</h1>\n");
       out.write("        <ul>\n");
@@ -79,16 +80,21 @@ public final class amortizacao_002dconstante_jsp extends org.apache.jasper.runti
 
             //Declaração da variavel i com valor 0 para evitar sujeira de memória
             int i = 0;
-            float ca = 0; 
-            int mes = 0; 
-            float jur = 0;
+            
             //Declaração da variável ca utilizada para pegar o valor do form
-            try{ if (request.getParameter ("enviar") != null){
-            ca = Float.parseFloat(request.getParameter("ca"));
-            mes = Integer.parseInt(request.getParameter("mes"));
-            jur = Float.parseFloat(request.getParameter("jur"));}
-            }
-            catch(Exception e){out.println("entre com um valor válido");}
+            float ca = 0; 
+            try{ca = Float.parseFloat(request.getParameter("ca"));}
+            catch(Exception e){}
+            
+            //Criação da variável mes utilizada para pegar o valor do form
+             int mes = 0; 
+             try{mes = Integer.parseInt(request.getParameter("mes"));}
+            catch(Exception e){}
+             
+             //Criação da variável jur utilizada para pegar o valor do form
+              float jur = 0;
+              try{jur = Float.parseFloat(request.getParameter("jur"));}
+            catch(Exception e){}
                 
                
               float amorti = ca / mes;
@@ -108,7 +114,7 @@ public final class amortizacao_002dconstante_jsp extends org.apache.jasper.runti
       out.write("            \n");
       out.write("            <br/> <b>Juros</b><br/>\n");
       out.write("            <input type=\"number\" name=\"jur\" /><br/><br/>            \n");
-      out.write("            <input class=\"btn\" type=\"submit\" name=\"enviar\" value=\"Gerar Amortização\"/>\n");
+      out.write("            <input class=\"btn\" type=\"submit\" value=\"Gerar Amortização\"/>\n");
       out.write("        </form>\n");
       out.write("            <br/>\n");
       out.write("            <hr>\n");
@@ -154,7 +160,11 @@ for(i=1; i<=mes; i++){
 }
       out.write("\n");
       out.write("        </div>\n");
-      out.write("       \n");
+      out.write("        ");
+      out.write("\n");
+      out.write("\n");
+      out.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"css/main.css\">\n");
+      out.write("\n");
       out.write("    </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {

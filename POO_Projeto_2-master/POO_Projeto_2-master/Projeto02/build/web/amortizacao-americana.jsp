@@ -25,12 +25,18 @@
             int meses = 0;
             
             //TRATAMENTO DE EXCESSÕES COM TRY CATCH
-            try{ if(request.getParameter("enviar") != null){
-            capital = Float.parseFloat(request.getParameter("C"));
-            juros = Float.parseFloat(request.getParameter("j"));
-            meses = Integer.parseInt(request.getParameter("m"));}
+            try{capital = Float.parseFloat(request.getParameter("C"));}
+            catch(Exception e){
+            out.println("entre com um dado válido");
             }
-            catch(Exception e){out.println("entre com um dado válido");}
+            try{juros = Float.parseFloat(request.getParameter("j"));}
+            catch(Exception e){
+            out.println("<div>entre com um dado válido</div>");
+            }
+            try{meses = Integer.parseInt(request.getParameter("m"));}
+            catch(Exception e){
+            out.println("<div>entre com um dado válido</div>");
+            }
             
             //OPERAÇÃO AMORTIZAÇÃO AMERICANA
             juros = capital * (juros/100);
@@ -40,16 +46,16 @@
             
             <form> 
                 <label for="C"><b>Capital</b></label><br>
-                <input type="number" step="0.01" name="C" id="C">
+                <input type="text" name="C" id="C">
                 <br>
                 <label for="m"><b>Meses</b></label><br>
-                <input type="number" name="m" id="m">
+                <input type="text" name="m" id="m">
                 <br>
                 <label for="j"><b>Juros</b></label><br>
-                <input type="number" step="0.01" name="j" id="j">
+                <input type="text" name="j" id="j">
                 
                 <br><br>
-                <input class="btn" type="submit" name="enviar" value="Gerar Amortização">
+                <input class="btn" type="submit" value="Gerar Amortização">
                 <br><br>
             </form>
             <hr>
