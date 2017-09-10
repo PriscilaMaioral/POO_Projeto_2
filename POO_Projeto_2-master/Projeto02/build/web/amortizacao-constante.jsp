@@ -1,9 +1,3 @@
-<%-- 
-    Document   : amortizacao-constante
-    Created on : 06/09/2017, 16:14:29
-    Author     : BRYAN
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -18,62 +12,62 @@
         <div class="formatação">
             <h2>Amortização Constante</h2>
      <%
-            //Declaração da variavel i com valor 0 para evitar sujeira de memória
+            
             int i = 0;
-            float ca = 0; 
-            int mes = 0; 
-            float jur = 0;
-            float totaljuros = 0;
-            float totalpresta = 0;
-            //Declaração da variável ca utilizada para pegar o valor do form
+            double capital = 0; 
+            int meses = 0; 
+            double taxa = 0;
+            double totaljuros = 0;
+            double totalpar = 0;
+            
             try{ if (request.getParameter ("enviar") != null){
-            ca = Float.parseFloat(request.getParameter("ca"));
-            mes = Integer.parseInt(request.getParameter("mes"));
-            jur = Float.parseFloat(request.getParameter("jur"));}
+            capital = Double.parseDouble(request.getParameter("capital"));
+            meses = Integer.parseInt(request.getParameter("meses"));
+            taxa = Double.parseDouble(request.getParameter("taxa"));}
             }
             catch(Exception e){out.println("entre com um valor válido");}
                 
                
-              float amorti = ca / mes;
-               float juros = 0;
-               float par = ca + juros;
+            Double amorti = capital / meses;
+            double juros = 0;
+            Double par = capital + juros;
                
 
             
      %>
         <form>
             <b>Capital</b><br/>    
-            <input type="number" step="0.01" name="ca" />
+            <input type="number" step="0.01" name="capital" />
           
             <br/> <b>Meses</b><br/>        
-            <input type="number" name="mes" />
+            <input type="number" name="meses" />
             
-            <br/> <b>Juros</b><br/>
-            <input type="number" step="0.01" name="jur" /><br/><br/>            
+            <br/> <b>Taxa de Juros</b><br/>
+            <input type="number" step="0.01" name="taxa" /><br/><br/>            
             <input class="btn" type="submit" name="enviar" value="Gerar Amortização"/>
         </form>
             <br/>
             <hr>
-          <%if(ca > 0 && mes>0 && jur>0){%>
+          <%if(capital > 0 && meses>0 && taxa>0){%>
         <table border="2" class="tabela1">
             <th> Parcelas </th>
             <th> Juros </th>
             <th> Total da parcela </th>
             <th> Valor amortizado </th>
             <th>Amortização </th>
-            <%for(i=1; i<=mes; i++){
-            totalpresta = totalpresta + par; 
-            totaljuros = totaljuros + jur;
+            <%for(i=1; i<=meses; i++){
+            totalpar = totalpar + par; 
+            totaljuros = totaljuros + taxa;
             %>
             
             <tr>
                 <td><%=i%></td>
                 
-                <td>R$ <%= String.format("%.2f", juros = ca * jur / 100) %></td>
+                <td>R$ <%= String.format("%.2f", juros = capital * taxa / 100) %></td>
                 
                 <td>R$ <%=String.format("%.2f", par+juros)%></td>
                 
-                <td>R$ <%=String.format("%.2f", ca = ca-amorti)%></td>
+                <td>R$ <%=String.format("%.2f", capital = capital-amorti)%></td>
                 
                 <td>R$ <%=String.format("%.2f", amorti)%></td>
               
@@ -84,7 +78,7 @@
                     <td> <%=String.format("R$ %.2f", totaljuros)%> </td>
                     <td><center>//</center></td>
                     <td><center>//</center></td>
-                    <td><%=String.format("R$ %.2f", totalpresta)%></td>
+                    <td><%=String.format("R$ %.2f", totalpar)%></td>
                 </tr>
         </table><%}%>
         </div>

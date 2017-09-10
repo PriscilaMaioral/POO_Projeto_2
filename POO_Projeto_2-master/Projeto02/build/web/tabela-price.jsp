@@ -1,8 +1,3 @@
-<%-- 
-    Document   : tabela-price
-    Created on : 06/09/2017, 16:26:40
-    Author     : BRYAN
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -19,17 +14,17 @@
             double capital = 0;
             double taxa = 0;
             double devedor = 0;
-            double amortizacao = 0;
-            double prestacao = 0;
+            double amorti = 0;
+            double par = 0;
             int meses = 0;
             double totaljuros = 0;
-            double totalpresta = 0;
+            double totalpar = 0;
             
             
             try{ if (request.getParameter("enviar")!= null) {
-            capital = Double.parseDouble(request.getParameter("C"));
-            taxa = Double.parseDouble(request.getParameter("j"));
-            meses = Integer.parseInt(request.getParameter("m"));}
+            capital = Double.parseDouble(request.getParameter("capital"));
+            taxa = Double.parseDouble(request.getParameter("juros"));
+            meses = Integer.parseInt(request.getParameter("meses"));}
             }
             catch(Exception e){out.println("entre com um valor válido");}
 
@@ -41,13 +36,13 @@
             %>
             <form> 
                 <label for="C"><b>Capital</b></label><br>
-                <input type="number" step="0.01" name="C" id="C">
+                <input type="number" step="0.01" name="capital" id="C">
                 <br>
                 <label for="m"><b>Meses</b></label><br>
-                <input type="number" step="0.01" name="m" id="m">
+                <input type="number" step="0.01" name="meses" id="m">
                 <br>
-                <label for="j"><b>Juros</b></label><br>
-                <input type="number" step="0.01" name="j" id="j">
+                <label for="j"><b>Taxa de Juros</b></label><br>
+                <input type="number" step="0.01" name="juros" id="j">
                 
                 <br><br>
                 <input type="submit" name="enviar" value="Gerar Amortização" class="btn">
@@ -68,25 +63,25 @@
                     
                     if(i == 1){
                         devedor = capital;
-                        prestacao = 0;
+                        par = 0;
                         juros = 0;
-                        amortizacao = 0;
+                        amorti = 0;
                     }
                     else{
-                        prestacao = linha1/linha2;
+                        par = linha1/linha2;
                         juros = devedor * taxa;
-                        devedor = (devedor+juros)- prestacao;
-                        amortizacao = prestacao - juros;
+                        devedor = (devedor+juros)- par;
+                        amorti = par - juros;
                     }          
-                totalpresta = totalpresta + prestacao; 
+                totalpar = totalpar + par; 
                 totaljuros = totaljuros + juros;
                 %>                
                 <tr>
                     <td><%=i%></td>
                     <td><%=String.format("R$ %.2f", devedor)%></td>
-                    <td><%=String.format("R$ %.2f", prestacao)%></td>
+                    <td><%=String.format("R$ %.2f", par)%></td>
                     <td><%=String.format("R$ %.2f", juros)%></td>
-                    <td><%=String.format("R$ %.2f", amortizacao)%></td>
+                    <td><%=String.format("R$ %.2f", amorti)%></td>
                 </tr>
                 <%}%>
                 <tr>
@@ -94,7 +89,7 @@
                     <td> // </td>
                     <td> // </td>
                     <td><%=String.format("R$ %.2f", totaljuros)%></td>
-                    <td><%=String.format("R$ %.2f", totalpresta)%></td>
+                    <td><%=String.format("R$ %.2f", totalpar)%></td>
                 </tr>
             </table><%}%>
         </div>

@@ -1,9 +1,3 @@
-<%-- 
-    Document   : amortizacao-americana
-    Created on : 06/09/2017, 16:19:28
-    Author     : BRYAN
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -18,44 +12,43 @@
             <h2>Amortização Americana</h2>
             
             <%
-                //INICIALIZAÇÃO DAS VARIÁVEIS NO TAMANHO 0
-            float parcela = 0;
-            float capital = 0;
-            float juros = 0;
-            float totaljuros = 0;
-            float totalpresta = 0;
+            double par = 0;
+            double capital = 0;
+            double taxa = 0;
+            double totaljuros = 0;
+            double totalpar = 0;
             int meses = 0;
             
-            //TRATAMENTO DE EXCESSÕES COM TRY CATCH
+            
             try{ if(request.getParameter("enviar") != null){
-            capital = Float.parseFloat(request.getParameter("C"));
-            juros = Float.parseFloat(request.getParameter("j"));
-            meses = Integer.parseInt(request.getParameter("m"));}
+            capital = Double.parseDouble(request.getParameter("capital"));
+            taxa = Double.parseDouble(request.getParameter("juros"));
+            meses = Integer.parseInt(request.getParameter("meses"));}
             }
             catch(Exception e){out.println("entre com um dado válido");}
             
-            //OPERAÇÃO AMORTIZAÇÃO AMERICANA
-            juros = capital * (juros/100);
-            parcela = juros;
-            float cap = capital; 
+            
+            taxa = capital * (taxa/100);
+            par = taxa;
+            double cap = capital; 
             %>
             
             <form> 
                 <label for="C"><b>Capital</b></label><br>
-                <input type="number" step="0.01" name="C" id="C">
+                <input type="number" step="0.01" name="capital" id="capital">
                 <br>
                 <label for="m"><b>Meses</b></label><br>
-                <input type="number" name="m" id="m">
+                <input type="number" name="meses" id="meses">
                 <br>
-                <label for="j"><b>Juros</b></label><br>
-                <input type="number" step="0.01" name="j" id="j">
+                <label for="j"><b>Taxa de Juros</b></label><br>
+                <input type="number" step="0.01" name="juros" id="juros">
                 
                 <br><br>
                 <input class="btn" type="submit" name="enviar" value="Gerar Amortização">
                 <br><br>
             </form>
             <hr>
-            <%if(capital > 0 && meses>0 && juros>0){%>
+            <%if(capital > 0 && meses>0 && taxa>0){%>
             <table border="1" class="tabela">
                     <th>Parcelas</th>
                     <th>Saldo Devedor</th>
@@ -66,30 +59,30 @@
                 <%for(int i = 1; i <= meses; i++){
                     
                     if(i == meses){
-                        parcela = capital + juros;
+                        par = capital + taxa;
                         cap = capital;
                         capital = 0;
                     }
                     if( i != meses){
                         cap = 0;
                     }    
-                 totalpresta = totalpresta + parcela; 
-                 totaljuros = totaljuros + juros;
+                 totalpar = totalpar + par; 
+                 totaljuros = totaljuros + taxa;
                 %>                
                 <tr>
                     <td><%=i%></td>
                     <td><%=String.format("R$ %.2f", capital)%></td>
                     <td><%=String.format("R$ %.2f", cap)%></td>
-                    <td><%=String.format("R$ %.2f", juros)%></td>
-                    <td><%=String.format("R$ %.2f", parcela)%></td>
+                    <td><%=String.format("R$ %.2f", taxa)%></td>
+                    <td><%=String.format("R$ %.2f", par)%></td>
                 </tr>
                 <%}%>
                 <tr>
                     <td>total</td>
-                    <td> // </td>
-                    <td> // </td>
+                    <td> <center>//</center> </td>
+                    <td> <center>//</center> </td>
                     <td><%=String.format("R$ %.2f", totaljuros)%></td>
-                    <td><%=String.format("R$ %.2f", totalpresta)%></td>
+                    <td><%=String.format("R$ %.2f", totalpar)%></td>
                 </tr>
             </table><%}%>
         </div>
