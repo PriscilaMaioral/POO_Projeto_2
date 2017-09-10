@@ -82,6 +82,8 @@ public final class amortizacao_002dconstante_jsp extends org.apache.jasper.runti
             float ca = 0; 
             int mes = 0; 
             float jur = 0;
+            float totaljuros = 0;
+            float totalpresta = 0;
             //Declaração da variável ca utilizada para pegar o valor do form
             try{ if (request.getParameter ("enviar") != null){
             ca = Float.parseFloat(request.getParameter("ca"));
@@ -101,13 +103,13 @@ public final class amortizacao_002dconstante_jsp extends org.apache.jasper.runti
       out.write("\n");
       out.write("        <form>\n");
       out.write("            <b>Capital</b><br/>    \n");
-      out.write("            <input type=\"number\" name=\"ca\" />\n");
+      out.write("            <input type=\"number\" step=\"0.01\" name=\"ca\" />\n");
       out.write("          \n");
       out.write("            <br/> <b>Meses</b><br/>        \n");
       out.write("            <input type=\"number\" name=\"mes\" />\n");
       out.write("            \n");
       out.write("            <br/> <b>Juros</b><br/>\n");
-      out.write("            <input type=\"number\" name=\"jur\" /><br/><br/>            \n");
+      out.write("            <input type=\"number\" step=\"0.01\" name=\"jur\" /><br/><br/>            \n");
       out.write("            <input class=\"btn\" type=\"submit\" name=\"enviar\" value=\"Gerar Amortização\"/>\n");
       out.write("        </form>\n");
       out.write("            <br/>\n");
@@ -123,6 +125,9 @@ if(ca > 0 && mes>0 && jur>0){
       out.write("            <th>Amortização </th>\n");
       out.write("            ");
 for(i=1; i<=mes; i++){
+            totalpresta = totalpresta + par; 
+            totaljuros = totaljuros + jur;
+            
       out.write("\n");
       out.write("            \n");
       out.write("            <tr>\n");
@@ -150,6 +155,17 @@ for(i=1; i<=mes; i++){
       out.write("            ");
 }
       out.write("\n");
+      out.write("            <tr>\n");
+      out.write("                    <td>total</td>\n");
+      out.write("                    <td> // </td>\n");
+      out.write("                    <td> // </td>\n");
+      out.write("                    <td>");
+      out.print(String.format("R$ %.2f", totaljuros));
+      out.write("</td>\n");
+      out.write("                    <td>");
+      out.print(String.format("R$ %.2f", totalpresta));
+      out.write("</td>\n");
+      out.write("                </tr>\n");
       out.write("        </table>");
 }
       out.write("\n");

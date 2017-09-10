@@ -22,6 +22,8 @@
             float parcela = 0;
             float capital = 0;
             float juros = 0;
+            float totaljuros = 0;
+            float totalpresta = 0;
             int meses = 0;
             
             //TRATAMENTO DE EXCESSÕES COM TRY CATCH
@@ -70,7 +72,9 @@
                     }
                     if( i != meses){
                         cap = 0;
-                    }                   
+                    }    
+                 totalpresta = totalpresta + parcela; 
+                 totaljuros = totaljuros + juros;
                 %>                
                 <tr>
                     <td><%=i%></td>
@@ -80,6 +84,13 @@
                     <td><%=String.format("R$ %.2f", parcela)%></td>
                 </tr>
                 <%}%>
+                <tr>
+                    <td>total</td>
+                    <td> // </td>
+                    <td> // </td>
+                    <td><%=String.format("R$ %.2f", totaljuros)%></td>
+                    <td><%=String.format("R$ %.2f", totalpresta)%></td>
+                </tr>
             </table><%}%>
         </div>
        
