@@ -49,8 +49,6 @@ public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
 
       out.write("\n");
       out.write("\n");
-      out.write("\n");
-      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
@@ -61,7 +59,7 @@ public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        ");
       out.write("\n");
       out.write("\n");
-      out.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"css/main.css\">\n");
+      out.write("\n");
       out.write("    <nav>\n");
       out.write("        <h1>POO PROJETO02</h1>\n");
       out.write("        <ul>\n");
@@ -89,7 +87,7 @@ public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        ");
       out.write("\n");
       out.write("\n");
-      out.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"css/main.css\">\n");
+      out.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"css/main.css\">");
       out.write("\n");
       out.write("    </body>\n");
       out.write("</html>");

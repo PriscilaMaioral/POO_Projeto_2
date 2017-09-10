@@ -1,3 +1,31 @@
 <%-- any content can be specified here e.g.: --%>
 <%@ page pageEncoding="UTF-8" %>
 <link rel="stylesheet" type="text/css" href="css/main.css">
+<style>
+#footer {
+width: 100%;
+bottom: 0;
+position: absolute;
+background-color: #333;
+height: auto;
+color: white;
+text-align: left;
+}
+#pig {
+height: 13%;
+width: auto;  
+bottom: 10px;
+position: absolute;
+right: 50px;
+}    
+html, body {
+  margin: 0;
+}
+</style>
+<div id="footer">
+    <ul>Integrantes do Grupo: 
+        <li>Bryan Ichiro Higa</li>
+        <li>Danilo Pelozone Lima</li>
+        <li>Priscila Maioral Maelaro</ul>
+            </div>
+<img src="https://image.flaticon.com/icons/png/512/20/20687.png" id="pig">
