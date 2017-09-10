@@ -23,6 +23,8 @@
             float ca = 0; 
             int mes = 0; 
             float jur = 0;
+            float totaljuros = 0;
+            float totalpresta = 0;
             //Declaração da variável ca utilizada para pegar o valor do form
             try{ if (request.getParameter ("enviar") != null){
             ca = Float.parseFloat(request.getParameter("ca"));
@@ -59,7 +61,10 @@
             <th> Total da parcela </th>
             <th> Valor amortizado </th>
             <th>Amortização </th>
-            <%for(i=1; i<=mes; i++){%>
+            <%for(i=1; i<=mes; i++){
+            totalpresta = totalpresta + par; 
+            totaljuros = totaljuros + jur;
+            %>
             
             <tr>
                 <td><%=i%></td>
@@ -74,6 +79,13 @@
               
             </tr>
             <%}%>
+            <tr>
+                    <td>total</td>
+                    <td> <%=String.format("R$ %.2f", totaljuros)%> </td>
+                    <td><center>//</center></td>
+                    <td><center>//</center></td>
+                    <td><%=String.format("R$ %.2f", totalpresta)%></td>
+                </tr>
         </table><%}%>
         </div>
        

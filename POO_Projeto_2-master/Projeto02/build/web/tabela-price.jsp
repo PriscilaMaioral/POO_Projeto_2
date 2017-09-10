@@ -22,6 +22,9 @@
             double amortizacao = 0;
             double prestacao = 0;
             int meses = 0;
+            double totaljuros = 0;
+            double totalpresta = 0;
+            
             
             try{ if (request.getParameter("enviar")!= null) {
             capital = Double.parseDouble(request.getParameter("C"));
@@ -74,7 +77,9 @@
                         juros = devedor * taxa;
                         devedor = (devedor+juros)- prestacao;
                         amortizacao = prestacao - juros;
-                    }                   
+                    }          
+                totalpresta = totalpresta + prestacao; 
+                totaljuros = totaljuros + juros;
                 %>                
                 <tr>
                     <td><%=i%></td>
@@ -84,6 +89,13 @@
                     <td><%=String.format("R$ %.2f", amortizacao)%></td>
                 </tr>
                 <%}%>
+                <tr>
+                    <td>total</td>
+                    <td> // </td>
+                    <td> // </td>
+                    <td><%=String.format("R$ %.2f", totaljuros)%></td>
+                    <td><%=String.format("R$ %.2f", totalpresta)%></td>
+                </tr>
             </table><%}%>
         </div>
       

@@ -72,7 +72,7 @@ public final class tabela_002dprice_jsp extends org.apache.jasper.runtime.HttpJs
       out.write("<hr/>");
       out.write("\n");
       out.write("        <div id=\"formatação\">\n");
-      out.write("            <h2>(Tabela Price)</h2>\n");
+      out.write("            <h2>Tabela Price</h2>\n");
       out.write("            ");
 
             double capital = 0;
@@ -81,6 +81,9 @@ public final class tabela_002dprice_jsp extends org.apache.jasper.runtime.HttpJs
             double amortizacao = 0;
             double prestacao = 0;
             int meses = 0;
+            double totaljuros = 0;
+            double totalpresta = 0;
+            
             
             try{ if (request.getParameter("enviar")!= null) {
             capital = Double.parseDouble(request.getParameter("C"));
@@ -137,7 +140,9 @@ for(int i = 1; i <= meses; i++){
                         juros = devedor * taxa;
                         devedor = (devedor+juros)- prestacao;
                         amortizacao = prestacao - juros;
-                    }                   
+                    }          
+                totalpresta = totalpresta + prestacao; 
+                totaljuros = totaljuros + taxa;
                 
       out.write("                \n");
       out.write("                <tr>\n");
@@ -160,6 +165,17 @@ for(int i = 1; i <= meses; i++){
       out.write("                ");
 }
       out.write("\n");
+      out.write("                <tr>\n");
+      out.write("                    <td>total</td>\n");
+      out.write("                    <td> // </td>\n");
+      out.write("                    <td> // </td>\n");
+      out.write("                    <td>");
+      out.print(String.format("R$ %.2f", totaljuros));
+      out.write("</td>\n");
+      out.write("                    <td>");
+      out.print(String.format("R$ %.2f", totalpresta));
+      out.write("</td>\n");
+      out.write("                </tr>\n");
       out.write("            </table>");
 }
       out.write("\n");
