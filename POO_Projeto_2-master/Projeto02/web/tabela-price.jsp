@@ -1,8 +1,3 @@
-<%-- 
-    Document   : tabela-price
-    Created on : 06/09/2017, 16:26:40
-    Author     : BRYAN
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -10,7 +5,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Tabela Price</title>
-        <style>
+         <style>
      input[type=number] {
     width: 40%;
     padding: 12px 20px;
@@ -21,11 +16,10 @@
     transition: 0.5s;
     outline: none;
 }
-
 input[type=number]:focus {
     border: 3px solid #D6DBDF;
 }
-submit {
+input[type=submit] {
     background-color: #4CAF50; 
     border: none;
     color: white;
@@ -38,6 +32,19 @@ submit {
     cursor: pointer;
     border-radius: 2px;
 }
+table, td, th {    
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 15px;
+}
 body {  
     background-color: #F2F3F4;
 }
@@ -47,21 +54,24 @@ body {
     <center>
         <%@include file="WEB-INF/header.jspf"%>
         <div id="formatação">
-            <h2>(Tabela Price)</h2>
+            <h2>Tabela Price</h2>
             <%
             double capital = 0;
             double taxa = 0;
             double devedor = 0;
-            double amortizacao = 0;
-            double prestacao = 0;
+            double amorti = 0;
+            double par = 0;
             int meses = 0;
+            double totaljuros = 0;
+            double totalpar = 0;
             
-            try{capital = Double.parseDouble(request.getParameter("C"));}
-            catch(Exception e){}
-            try{taxa = Double.parseDouble(request.getParameter("j"));}
-            catch(Exception e){}
-            try{meses = Integer.parseInt(request.getParameter("m"));}
-            catch(Exception e){}
+            
+            try{ if (request.getParameter("enviar")!= null) {
+            capital = Double.parseDouble(request.getParameter("capital"));
+            taxa = Double.parseDouble(request.getParameter("juros"));
+            meses = Integer.parseInt(request.getParameter("meses"));}
+            }
+            catch(Exception e){out.println("<h1><font color='red'>Entre com um dado válido</font></h1>");}
 
             taxa = taxa/100;
             double linha1 = capital * taxa;
@@ -71,16 +81,16 @@ body {
             %>
             <form> 
                 <label for="C"><b>Capital</b></label><br>
-                <input type="text" name="C" id="C">
+                <input type="number" step="0.01" name="capital" id="C">
                 <br>
                 <label for="m"><b>Meses</b></label><br>
-                <input type="text" name="m" id="m">
+                <input type="number" step="0.01" name="meses" id="m">
                 <br>
-                <label for="j"><b>Juros</b></label><br>
-                <input type="text" name="j" id="j">
+                <label for="j"><b>Taxa de Juros</b></label><br>
+                <input type="number" step="0.01" name="juros" id="j">
                 
                 <br><br>
-                <input type="submit" value="Gerar Amortização" class="btn">
+                <input type="submit" name="enviar" value="Gerar Amortização" class="btn">
                 <br/><br/>
             </form>
             <hr>
@@ -98,27 +108,36 @@ body {
                     
                     if(i == 1){
                         devedor = capital;
-                        prestacao = 0;
+                        par = 0;
                         juros = 0;
-                        amortizacao = 0;
+                        amorti = 0;
                     }
                     else{
-                        prestacao = linha1/linha2;
+                        par = linha1/linha2;
                         juros = devedor * taxa;
-                        devedor = (devedor+juros)- prestacao;
-                        amortizacao = prestacao - juros;
-                    }                   
+                        devedor = (devedor+juros)- par;
+                        amorti = par - juros;
+                    }          
+                totalpar = totalpar + par; 
+                totaljuros = totaljuros + juros;
                 %>                
                 <tr>
                     <td><%=i%></td>
                     <td><%=String.format("R$ %.2f", devedor)%></td>
-                    <td><%=String.format("R$ %.2f", prestacao)%></td>
+                    <td><%=String.format("R$ %.2f", par)%></td>
                     <td><%=String.format("R$ %.2f", juros)%></td>
-                    <td><%=String.format("R$ %.2f", amortizacao)%></td>
+                    <td><%=String.format("R$ %.2f", amorti)%></td>
                 </tr>
                 <%}%>
+                <tr>
+                    <td>total</td>
+                    <td> // </td>
+                    <td> // </td>
+                    <td><%=String.format("R$ %.2f", totaljuros)%></td>
+                    <td><%=String.format("R$ %.2f", totalpar)%></td>
+                </tr>
             </table><%}%>
         </div>
-    </center>
+        </center>
     </body>
 </html>

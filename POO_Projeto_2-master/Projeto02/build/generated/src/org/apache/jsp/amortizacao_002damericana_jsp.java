@@ -48,25 +48,94 @@ public final class amortizacao_002damericana_jsp extends org.apache.jasper.runti
 
       out.write("\n");
       out.write("\n");
-      out.write("\n");
-      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
       out.write("        <title>Amortização Americana</title>\n");
+      out.write("        <style>\n");
+      out.write("    input[type=number] {\n");
+      out.write("    width: 100%;\n");
+      out.write("    padding: 12px 20px;\n");
+      out.write("    margin: 8px 0;\n");
+      out.write("    box-sizing: border-box;\n");
+      out.write("    border: 3px solid #ccc;\n");
+      out.write("    -webkit-transition: 0.5s;\n");
+      out.write("    transition: 0.5s;\n");
+      out.write("    outline: none;\n");
+      out.write("}\n");
+      out.write("input[type=number]:focus {\n");
+      out.write("    border: 3px solid #D6DBDF;\n");
+      out.write("}\n");
+      out.write("submit {\n");
+      out.write("    background-color: #4CAF50; \n");
+      out.write("    border: none;\n");
+      out.write("    color: white;\n");
+      out.write("    padding: 15px 32px;\n");
+      out.write("    text-align: center;\n");
+      out.write("    text-decoration: none;\n");
+      out.write("    display: inline-block;\n");
+      out.write("    font-size: 16px;\n");
+      out.write("    margin: 4px 2px;\n");
+      out.write("    cursor: pointer;\n");
+      out.write("    border-radius: 2px;\n");
+      out.write("}\n");
+      out.write("body {  \n");
+      out.write("    background-color: FCFBE3;\n");
+      out.write("}\n");
+      out.write("</style>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
+      out.write("    <center>\n");
       out.write("        ");
       out.write("\n");
       out.write("\n");
       out.write("\n");
+      out.write("    <style type=\"text/css\">\n");
+      out.write("       \n");
+      out.write("ul {\n");
+      out.write("    list-style-type: none;\n");
+      out.write("    margin: 0;\n");
+      out.write("    padding: 0;\n");
+      out.write("    overflow: hidden;\n");
+      out.write("    background-color: #333;\n");
+      out.write("}\n");
+      out.write("\n");
+      out.write("li {\n");
+      out.write("    float: left;\n");
+      out.write("}\n");
+      out.write("\n");
+      out.write("li a {\n");
+      out.write("    display: block;\n");
+      out.write("    color: white;\n");
+      out.write("    text-align: center;\n");
+      out.write("    padding: 20px 22px;\n");
+      out.write("    text-decoration: none;\n");
+      out.write("    font-size: 30px;\n");
+      out.write("    font-family: garamond;\n");
+      out.write("}\n");
+      out.write("\n");
+      out.write("li a:hover:not(.active) {\n");
+      out.write("    background-color: #111;\n");
+      out.write("}\n");
+      out.write("\n");
+      out.write(".active {\n");
+      out.write("    background-color: #A3E4D7;\n");
+      out.write("}\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("html,body\n");
+      out.write("{\n");
+      out.write("    margin:0;\n");
+      out.write("}\n");
+      out.write("\n");
+      out.write("</style> \n");
       out.write("    <nav>\n");
-      out.write("        <h1>POO PROJETO02</h1>\n");
+      out.write("       \n");
       out.write("        <ul>\n");
       out.write("            <li><a href=\"home.jsp\" class=\"btn\">Home</a></li>\n");
-      out.write("            <li><a href=\"amortizacao-constante.jsp\" class=\"btn\">Amortização Constante</a></li>\n");
-      out.write("            <li><a href=\"amortizacao-americana.jsp\" class=\"btn\">Amortização Americana</a></li>\n");
+      out.write("            <li><a href=\"amortizacao-constante.jsp\"class=\"btn\">Armotização Constante</a></li>\n");
+      out.write("            <li><a href=\"amortizacao-americana.jsp\" class=\"btn\">Armotização Americana</a></li>\n");
       out.write("            <li><a href=\"tabela-price.jsp\" class=\"btn\">Tabela Price</a></li>\t\t\t\n");
       out.write("\t</ul>\n");
       out.write("    </nav>\n");
@@ -77,44 +146,45 @@ public final class amortizacao_002damericana_jsp extends org.apache.jasper.runti
       out.write("            \n");
       out.write("            ");
 
-                //INICIALIZAÇÃO DAS VARIÁVEIS NO TAMANHO 0
-            float parcela = 0;
-            float capital = 0;
-            float juros = 0;
+            double par = 0;
+            double capital = 0;
+            double taxa = 0;
+            double totaljuros = 0;
+            double totalpar = 0;
             int meses = 0;
             
-            //TRATAMENTO DE EXCESSÕES COM TRY CATCH
-            try{capital = Float.parseFloat(request.getParameter("C"));}
-            catch(Exception e){}
-            try{juros = Float.parseFloat(request.getParameter("j"));}
-            catch(Exception e){}
-            try{meses = Integer.parseInt(request.getParameter("m"));}
-            catch(Exception e){}
             
-            //OPERAÇÃO AMORTIZAÇÃO AMERICANA
-            juros = capital * (juros/100);
-            parcela = juros;
-            float cap = capital; 
+            try{ if(request.getParameter("enviar") != null){
+            capital = Double.parseDouble(request.getParameter("capital"));
+            taxa = Double.parseDouble(request.getParameter("juros"));
+            meses = Integer.parseInt(request.getParameter("meses"));}
+            }
+            catch(Exception e){out.println("entre com um dado válido");}
+            
+            
+            taxa = capital * (taxa/100);
+            par = taxa;
+            double cap = capital; 
             
       out.write("\n");
       out.write("            \n");
       out.write("            <form> \n");
       out.write("                <label for=\"C\"><b>Capital</b></label><br>\n");
-      out.write("                <input type=\"text\" name=\"C\" id=\"C\">\n");
+      out.write("                <input type=\"number\" step=\"0.01\" name=\"capital\" id=\"capital\">\n");
       out.write("                <br>\n");
       out.write("                <label for=\"m\"><b>Meses</b></label><br>\n");
-      out.write("                <input type=\"text\" name=\"m\" id=\"m\">\n");
+      out.write("                <input type=\"number\" name=\"meses\" id=\"meses\">\n");
       out.write("                <br>\n");
-      out.write("                <label for=\"j\"><b>Juros</b></label><br>\n");
-      out.write("                <input type=\"text\" name=\"j\" id=\"j\">\n");
+      out.write("                <label for=\"j\"><b>Taxa de Juros</b></label><br>\n");
+      out.write("                <input type=\"number\" step=\"0.01\" name=\"juros\" id=\"juros\">\n");
       out.write("                \n");
       out.write("                <br><br>\n");
-      out.write("                <input class=\"btn\" type=\"submit\" value=\"Gerar Amortização\">\n");
+      out.write("                <input class=\"btn\" type=\"submit\" name=\"enviar\" value=\"Gerar Amortização\">\n");
       out.write("                <br><br>\n");
       out.write("            </form>\n");
       out.write("            <hr>\n");
       out.write("            ");
-if(capital > 0 && meses>0 && juros>0){
+if(capital > 0 && meses>0 && taxa>0){
       out.write("\n");
       out.write("            <table border=\"1\" class=\"tabela\">\n");
       out.write("                    <th>Parcelas</th>\n");
@@ -127,13 +197,15 @@ if(capital > 0 && meses>0 && juros>0){
 for(int i = 1; i <= meses; i++){
                     
                     if(i == meses){
-                        parcela = capital + juros;
+                        par = capital + taxa;
                         cap = capital;
                         capital = 0;
                     }
                     if( i != meses){
                         cap = 0;
-                    }                   
+                    }    
+                 totalpar = totalpar + par; 
+                 totaljuros = totaljuros + taxa;
                 
       out.write("                \n");
       out.write("                <tr>\n");
@@ -147,20 +219,31 @@ for(int i = 1; i <= meses; i++){
       out.print(String.format("R$ %.2f", cap));
       out.write("</td>\n");
       out.write("                    <td>");
-      out.print(String.format("R$ %.2f", juros));
+      out.print(String.format("R$ %.2f", taxa));
       out.write("</td>\n");
       out.write("                    <td>");
-      out.print(String.format("R$ %.2f", parcela));
+      out.print(String.format("R$ %.2f", par));
       out.write("</td>\n");
       out.write("                </tr>\n");
       out.write("                ");
 }
       out.write("\n");
+      out.write("                <tr>\n");
+      out.write("                    <td>total</td>\n");
+      out.write("                    <td> <center>//</center> </td>\n");
+      out.write("                    <td> <center>//</center> </td>\n");
+      out.write("                    <td>");
+      out.print(String.format("R$ %.2f", totaljuros));
+      out.write("</td>\n");
+      out.write("                    <td>");
+      out.print(String.format("R$ %.2f", totalpar));
+      out.write("</td>\n");
+      out.write("                </tr>\n");
       out.write("            </table>");
 }
       out.write("\n");
       out.write("        </div>\n");
-      out.write("       \n");
+      out.write("    </center>\n");
       out.write("    </body>\n");
       out.write("</html>");
     } catch (Throwable t) {
