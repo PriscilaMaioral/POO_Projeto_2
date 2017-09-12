@@ -1,9 +1,3 @@
-<%-- 
-    Document   : amortizacao-americana
-    Created on : 06/09/2017, 16:19:28
-    Author     : BRYAN
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -56,10 +50,10 @@
             <%if(capital > 0 && meses>0 && juros>0){%>
             <table border="1" class="tabela">
                     <th>Parcelas</th>
-                    <th>Saldo Devedor</th>
                     <th>Amortização</th>
                     <th>Valor dos Juros</th>
                     <th>Valor da Prestação</th>
+                    <th>Saldo Devedor</th>
                     
                 <%for(int i = 1; i <= meses; i++){
                     
@@ -74,14 +68,14 @@
                 %>                
                 <tr>
                     <td><%=i%></td>
-                    <td><%=String.format("R$ %.2f", capital)%></td>
                     <td><%=String.format("R$ %.2f", cap)%></td>
                     <td><%=String.format("R$ %.2f", juros)%></td>
                     <td><%=String.format("R$ %.2f", parcela)%></td>
+                    <td><%=String.format("R$ %.2f", capital)%></td>
                 </tr>
                 <%}%>
             </table><%}%>
         </div>
-       
+        <%@include file="WEB-INF/footer.jspf"%>
     </body>
 </html>
