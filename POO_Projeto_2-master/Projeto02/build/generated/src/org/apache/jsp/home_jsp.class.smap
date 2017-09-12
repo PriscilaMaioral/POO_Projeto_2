@@ -7,8 +7,12 @@ JSP
 home.jsp
 + 1 header.jspf
 WEB-INF/header.jspf
++ 2 footer.jspf
+WEB-INF/footer.jspf
 *L
-1,11:49
-1#1,35:60
-11#0,17:95
+1,21:50
+1#1,52:71
+21#0,30:123
+1#2,32:153
+50#0,3:184
 *E

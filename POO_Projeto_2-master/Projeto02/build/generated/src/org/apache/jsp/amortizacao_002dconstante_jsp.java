@@ -12,9 +12,8 @@ public final class amortizacao_002dconstante_jsp extends org.apache.jasper.runti
   private static java.util.List<String> _jspx_dependants;
 
   static {
-    _jspx_dependants = new java.util.ArrayList<String>(2);
+    _jspx_dependants = new java.util.ArrayList<String>(1);
     _jspx_dependants.add("/WEB-INF/header.jspf");
-    _jspx_dependants.add("/WEB-INF/footer.jspf");
   }
 
   private org.glassfish.jsp.api.ResourceInjector _jspx_resourceInjector;
@@ -49,20 +48,18 @@ public final class amortizacao_002dconstante_jsp extends org.apache.jasper.runti
 
       out.write("\n");
       out.write("\n");
-      out.write("\n");
-      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
-      out.write("        <link rel=\"stylesheet\" type=\"text/css\" href=\"css/main.css\">\n");
+      out.write("        \n");
       out.write("        <title>Amortização Constante</title>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
       out.write("        ");
       out.write("\n");
       out.write("\n");
-      out.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"css/main.css\">\n");
+      out.write("\n");
       out.write("    <nav>\n");
       out.write("        <h1>POO PROJETO02</h1>\n");
       out.write("        <ul>\n");
@@ -80,26 +77,23 @@ public final class amortizacao_002dconstante_jsp extends org.apache.jasper.runti
 
             //Declaração da variavel i com valor 0 para evitar sujeira de memória
             int i = 0;
-            
+            double capital = 0; 
+            int meses = 0; 
+            double taxa = 0;
+            double totaljuros = 0;
+            double totalpresta = 0;
             //Declaração da variável ca utilizada para pegar o valor do form
-            float ca = 0; 
-            try{ca = Float.parseFloat(request.getParameter("ca"));}
-            catch(Exception e){}
-            
-            //Criação da variável mes utilizada para pegar o valor do form
-             int mes = 0; 
-             try{mes = Integer.parseInt(request.getParameter("mes"));}
-            catch(Exception e){}
-             
-             //Criação da variável jur utilizada para pegar o valor do form
-              float jur = 0;
-              try{jur = Float.parseFloat(request.getParameter("jur"));}
-            catch(Exception e){}
+            try{ if (request.getParameter ("enviar") != null){
+            capital = Double.parseDouble(request.getParameter("capital"));
+            meses = Integer.parseInt(request.getParameter("meses"));
+            taxa = Double.parseDouble(request.getParameter("taxa"));}
+            }
+            catch(Exception e){out.println("entre com um valor válido");}
                 
                
-              float amorti = ca / mes;
-               float juros = 0;
-               float par = ca + juros;
+             Double amorti = capital / meses;
+             double juros = 0;
+             Double par = capital + juros;
                
 
             
@@ -107,19 +101,19 @@ public final class amortizacao_002dconstante_jsp extends org.apache.jasper.runti
       out.write("\n");
       out.write("        <form>\n");
       out.write("            <b>Capital</b><br/>    \n");
-      out.write("            <input type=\"number\" name=\"ca\" />\n");
+      out.write("            <input type=\"number\" step=\"0.01\" name=\"capital\" />\n");
       out.write("          \n");
       out.write("            <br/> <b>Meses</b><br/>        \n");
-      out.write("            <input type=\"number\" name=\"mes\" />\n");
+      out.write("            <input type=\"number\" name=\"meses\" />\n");
       out.write("            \n");
-      out.write("            <br/> <b>Juros</b><br/>\n");
-      out.write("            <input type=\"number\" name=\"jur\" /><br/><br/>            \n");
-      out.write("            <input class=\"btn\" type=\"submit\" value=\"Gerar Amortização\"/>\n");
+      out.write("            <br/> <b>Taxa de Juros</b><br/>\n");
+      out.write("            <input type=\"number\" step=\"0.01\" name=\"taxa\" /><br/><br/>            \n");
+      out.write("            <input class=\"btn\" type=\"submit\" name=\"enviar\" value=\"Gerar Amortização\"/>\n");
       out.write("        </form>\n");
       out.write("            <br/>\n");
       out.write("            <hr>\n");
       out.write("          ");
-if(ca > 0 && mes>0 && jur>0){
+if(capital > 0 && meses>0 && taxa>0){
       out.write("\n");
       out.write("        <table border=\"2\" class=\"tabela1\">\n");
       out.write("            <th> Parcelas </th>\n");
@@ -128,7 +122,10 @@ if(ca > 0 && mes>0 && jur>0){
       out.write("            <th> Valor amortizado </th>\n");
       out.write("            <th>Amortização </th>\n");
       out.write("            ");
-for(i=1; i<=mes; i++){
+for(i=1; i<=meses; i++){
+            totalpresta = totalpresta + par; 
+            totaljuros = totaljuros + taxa;
+            
       out.write("\n");
       out.write("            \n");
       out.write("            <tr>\n");
@@ -137,7 +134,7 @@ for(i=1; i<=mes; i++){
       out.write("</td>\n");
       out.write("                \n");
       out.write("                <td>R$ ");
-      out.print( String.format("%.2f", juros = ca * jur / 100) );
+      out.print( String.format("%.2f", juros = capital * taxa / 100) );
       out.write("</td>\n");
       out.write("                \n");
       out.write("                <td>R$ ");
@@ -145,7 +142,7 @@ for(i=1; i<=mes; i++){
       out.write("</td>\n");
       out.write("                \n");
       out.write("                <td>R$ ");
-      out.print(String.format("%.2f", ca = ca-amorti));
+      out.print(String.format("%.2f", capital = capital-amorti));
       out.write("</td>\n");
       out.write("                \n");
       out.write("                <td>R$ ");
@@ -156,15 +153,22 @@ for(i=1; i<=mes; i++){
       out.write("            ");
 }
       out.write("\n");
+      out.write("            <tr>\n");
+      out.write("                    <td>total</td>\n");
+      out.write("                    <td> ");
+      out.print(String.format("R$ %.2f", totaljuros));
+      out.write(" </td>\n");
+      out.write("                    <td><center>//</center></td>\n");
+      out.write("                    <td><center>//</center></td>\n");
+      out.write("                    <td>");
+      out.print(String.format("R$ %.2f", totalpresta));
+      out.write("</td>\n");
+      out.write("                </tr>\n");
       out.write("        </table>");
 }
       out.write("\n");
       out.write("        </div>\n");
-      out.write("        ");
-      out.write("\n");
-      out.write("\n");
-      out.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"css/main.css\">\n");
-      out.write("\n");
+      out.write("       \n");
       out.write("    </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {
