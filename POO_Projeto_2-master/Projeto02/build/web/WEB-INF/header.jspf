@@ -1,12 +1,51 @@
 <%-- any content can be specified here e.g.: --%>
-<%@ page pageEncoding="UTF-8" %>
 
+<%@ page pageEncoding="UTF-8" %>
+    <style type="text/css">
+       
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 20px 22px;
+    text-decoration: none;
+    font-size: 30px;
+    font-family: garamond;
+}
+
+li a:hover:not(.active) {
+    background-color: #111;
+}
+
+.active {
+    background-color: #A3E4D7;
+}
+
+
+html,body
+{
+    margin:0;
+}
+
+</style> 
     <nav>
-        <h1>POO PROJETO02</h1>
+       
         <ul>
             <li><a href="home.jsp" class="btn">Home</a></li>
-            <li><a href="amortizacao-constante.jsp" class="btn">Amortização Constante</a></li>
-            <li><a href="amortizacao-americana.jsp" class="btn">Amortização Americana</a></li>
+            <li><a href="amortizacao-constante.jsp"class="btn">Armotização Constante</a></li>
+            <li><a href="amortizacao-americana.jsp" class="btn">Armotização Americana</a></li>
             <li><a href="tabela-price.jsp" class="btn">Tabela Price</a></li>			
 	</ul>
     </nav>

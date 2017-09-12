@@ -12,9 +12,8 @@ public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
   private static java.util.List<String> _jspx_dependants;
 
   static {
-    _jspx_dependants = new java.util.ArrayList<String>(2);
+    _jspx_dependants = new java.util.ArrayList<String>(1);
     _jspx_dependants.add("/WEB-INF/header.jspf");
-    _jspx_dependants.add("/WEB-INF/footer.jspf");
   }
 
   private org.glassfish.jsp.api.ResourceInjector _jspx_resourceInjector;
@@ -54,14 +53,37 @@ public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    <head>\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
       out.write("        <title>HOME</title>\n");
+      out.write("        \n");
       out.write("    </head>\n");
       out.write("    <body>\n");
       out.write("        ");
       out.write("\n");
       out.write("\n");
       out.write("\n");
+      out.write("    <style type=\"text/css\">\n");
+      out.write(".OutlineText {\n");
+      out.write("    position: relative;\n");
+      out.write("     left: 10px;\n");
+      out.write("     bottom: 100px;\n");
+      out.write("    font: Garamond;\n");
+      out.write("    font-size: 90px;\n");
+      out.write("    color: white;\n");
+      out.write("    text-shadow:\n");
+      out.write("\n");
+      out.write("  \n");
+      out.write("    2px 0 0 #000000,\n");
+      out.write("    0 2px 0 #000000,\n");
+      out.write("    0 -2px 0 #000000; \n");
+      out.write(" \n");
+      out.write("}\n");
+      out.write("\n");
+      out.write("</style> \n");
       out.write("    <nav>\n");
-      out.write("        <h1>POO PROJETO02</h1>\n");
+      out.write("        <center><div class=\"OutlineText\" style=\"background-image: url(https://s26.postimg.org/d70560ruh/money-2.jpg); height: 300px; width: 1250px; \"> \n");
+      out.write("            \n");
+      out.write("                <p style=\"text-align:justify\" >\n");
+      out.write("            \n");
+      out.write("                <h1>POO - PROJETO 02</h1> </div></center>\n");
       out.write("        <ul>\n");
       out.write("            <li><a href=\"home.jsp\" class=\"btn\">Home</a></li>\n");
       out.write("            <li><a href=\"amortizacao-constante.jsp\" class=\"btn\">Amortização Constante</a></li>\n");
@@ -84,11 +106,7 @@ public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            </ul>\n");
       out.write("\t</div>\n");
       out.write("        \n");
-      out.write("        ");
-      out.write("\n");
-      out.write("\n");
-      out.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"css/main.css\">");
-      out.write("\n");
+      out.write("        \n");
       out.write("    </body>\n");
       out.write("</html>");
     } catch (Throwable t) {
